@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pradeepan P. — Applied Scientist · Deep Learning · Medical AI</title>
+<meta name="description" content="PhD Computer Scientist building production-ready AI systems. Deep learning, medical imaging, quantum ML, and agentic AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul,ol{list-style:none}
+button{border:none;background:none;cursor:pointer;font:inherit;color:inherit}
+
+/* ── CSS CUSTOM PROPERTIES ── */
+:root,html[data-theme="dark"]{
+  --bg:#0A0A0B;--surface:#111113;--surface-2:#18181B;
+  --border:#27272A;--border-strong:#3F3F46;
+  --text:#F4F4F5;--muted:#A1A1AA;--muted-strong:#D4D4D8;
+  --accent:#84CC16;--accent-soft:rgba(132,204,22,0.12);
+  --accent-border:rgba(132,204,22,0.3);
+  --warning:#EAB308;
+  --nav-bg:rgba(10,10,11,0.72);
+  --grid-line:rgba(255,255,255,0.04);
+  --shadow:0 10px 30px rgba(0,0,0,0.4);
+  --ieee-bg:rgba(124,183,247,0.1);--ieee-text:#7cb7f7;
+}
+html[data-theme="light"]{
+  --bg:#FAFAF9;--surface:#FFFFFF;--surface-2:#F4F4F5;
+  --border:#E4E4E7;--border-strong:#D4D4D8;
+  --text:#18181B;--muted:#52525B;--muted-strong:#3F3F46;
+  --accent:#4D7C0F;--accent-soft:rgba(77,124,15,0.1);
+  --accent-border:rgba(77,124,15,0.3);
+  --warning:#A16207;
+  --nav-bg:rgba(250,250,249,0.75);
+  --grid-line:rgba(0,0,0,0.04);
+  --shadow:0 10px 30px rgba(0,0,0,0.08);
+  --ieee-bg:rgba(124,183,247,0.12);--ieee-text:#3b82f6;
+}
+
+::selection{background:var(--accent);color:#0A0A0B}
+
+/* ── TYPOGRAPHY ── */
+.f-serif{font-family:'Fraunces',serif}
+.f-mono{font-family:'JetBrains Mono',monospace}
+.f-sans{font-family:'Instrument Sans',sans-serif}
+body{font-family:'Instrument Sans',sans-serif;color:var(--text);background:var(--bg)}
+
+/* ── GRID BACKGROUND ── */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(132,204,22,0.5)}
+  50%{box-shadow:0 0 0 6px rgba(132,204,22,0)}
+}
+.pulse-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--accent);
+  display:inline-block;animation:pulse 2s infinite;flex-shrink:0;
+}
+
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){
+  .fade-up{opacity:1;transform:none;transition:none}
+}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+section{padding:100px 0}
+
+/* ── SECTION LABELS ── */
+.section-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:2px;color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:16px;
+}
+.section-label::before{content:'';width:24px;height:2px;background:var(--accent);flex-shrink:0}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,42px);line-height:1.2;margin-bottom:48px}
+.section-title em{font-style:italic;color:var(--accent)}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;max-width:1200px;margin:0 auto;padding:0 32px;
+}
+.nav-brand{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;
+  letter-spacing:1px;display:flex;align-items:center;gap:8px;
+}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:lowercase;
+  color:var(--muted);padding:6px 10px;border-radius:4px;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a .n{color:var(--border-strong);margin-right:2px;font-size:10px}
+.theme-toggle{
+  width:34px;height:34px;border:1px solid var(--border);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  transition:border-color 0.2s;margin-left:8px;
+}
+.theme-toggle:hover{border-color:var(--accent)}
+@media(max-width:768px){.nav-links a{display:none}}
+
+/* ── HERO ── */
+.hero{padding:100px 0 80px}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:72px;align-items:start;
+}
+.hero-portrait{position:sticky;top:120px}
+.portrait-frame{
+  aspect-ratio:4/5;border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  background:var(--surface);box-shadow:var(--shadow);position:relative;
+}
+.portrait-frame::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+}
+.portrait-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.portrait-placeholder .glyph{
+  font-family:'Fraunces',serif;font-style:italic;font-size:120px;color:var(--accent);line-height:1;opacity:0.6;
+}
+.portrait-placeholder .hint{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:12px}
+.portrait-frame img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:filter 0.4s,transform 0.4s}
+.portrait-frame:hover img{filter:grayscale(0%);transform:scale(1.02)}
+.portrait-caption{
+  display:flex;justify-content:space-between;margin-top:10px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;
+  letter-spacing:1px;color:var(--muted);
+}
+
+/* Hero content */
+.status-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--accent-border);border-radius:999px;padding:6px 16px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;
+  letter-spacing:1.5px;color:var(--accent);margin-bottom:24px;
+}
+.hero-name{
+  font-family:'Fraunces',serif;font-size:clamp(56px,8vw,120px);line-height:0.95;
+  font-weight:600;margin-bottom:20px;letter-spacing:-2px;
+}
+.hero-name .phd{font-style:italic;color:var(--accent);font-size:0.62em}
+.hero-role{
+  font-family:'JetBrains Mono',monospace;font-size:clamp(11px,1.2vw,13px);
+  text-transform:uppercase;letter-spacing:1.5px;margin-bottom:28px;line-height:1.7;
+}
+.hero-role strong{color:var(--text)}
+.hero-role span{color:var(--muted)}
+.hero-pitch{
+  font-family:'Fraunces',serif;font-size:clamp(20px,2vw,26px);line-height:1.5;
+  color:var(--muted-strong);margin-bottom:40px;
+}
+.hero-pitch em{font-style:italic;color:var(--accent)}
+
+/* Stats row */
+.stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:24px 0;gap:0;margin-bottom:36px;
+}
+.stat{text-align:center}
+.stat:not(:last-child){border-right:1px solid var(--border)}
+.stat-num{font-family:'Fraunces',serif;font-size:clamp(28px,3vw,40px);font-weight:600;line-height:1}
+.stat-num sup{color:var(--accent);font-size:0.5em;vertical-align:super}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:6px}
+
+/* Link buttons */
+.link-buttons{display:flex;flex-wrap:wrap;gap:10px}
+.link-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:1px;padding:10px 18px;border:1px solid var(--border);border-radius:6px;
+  transition:border-color 0.2s,background 0.2s,transform 0.2s,box-shadow 0.2s;
+}
+.link-btn:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 4px 12px rgba(132,204,22,0.15)}
+.link-btn svg{width:16px;height:16px}
+.link-btn.primary{background:var(--accent);color:#0A0A0B;border-color:var(--accent);font-weight:600}
+.link-btn.primary:hover{background:#9ae626}
+
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-portrait{position:static;order:-1;max-width:340px;margin:0 auto}
+}
+@media(max-width:480px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:none}
+}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.project-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:32px;box-shadow:var(--shadow);transition:border-color 0.3s,transform 0.3s;
+}
+.project-card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.project-card.featured{
+  grid-column:1/-1;padding:48px;position:relative;overflow:hidden;
+  border-left:3px solid var(--accent);
+}
+.project-card.featured::before{
+  content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;
+  background:radial-gradient(circle,var(--accent-soft) 0%,transparent 70%);pointer-events:none;
+}
+.project-index{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;margin-bottom:12px}
+.project-badge{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:1px;color:var(--accent);
+  background:var(--accent-soft);border:1px solid var(--accent-border);
+  padding:3px 10px;border-radius:999px;margin-bottom:14px;
+}
+.project-title{font-family:'Fraunces',serif;font-size:clamp(20px,2.2vw,28px);font-weight:600;margin-bottom:12px;line-height:1.25}
+.featured .project-title{font-size:clamp(24px,2.8vw,34px)}
+.project-desc{font-family:'Instrument Sans',sans-serif;font-size:14px;line-height:1.65;color:var(--muted-strong);margin-bottom:18px}
+.project-metrics{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;
+}
+.project-metric{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-strong);
+  background:var(--surface-2);padding:4px 10px;border-radius:4px;
+}
+.project-metric strong,.project-metric b{color:var(--accent);font-weight:600}
+.tech-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.tech-chip{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--muted);background:var(--surface-2);border:1px solid var(--border);
+  padding:3px 8px;border-radius:4px;
+}
+.project-links{display:flex;gap:10px;flex-wrap:wrap}
+.project-link{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);
+  display:inline-flex;align-items:center;gap:4px;transition:opacity 0.2s;
+}
+.project-link:hover{opacity:0.7}
+.project-link svg{width:14px;height:14px}
+.project-link.muted-link{color:var(--muted);font-style:italic}
+
+@media(max-width:1024px){.projects-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.project-card.featured::before{display:none}}
+
+/* ── STACK ── */
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.stack-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:28px;box-shadow:var(--shadow);
+}
+.stack-card.full-width{grid-column:1/-1}
+.stack-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.stack-card-title{font-family:'Fraunces',serif;font-size:20px;font-weight:500}
+.stack-card-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.stack-chips{display:flex;flex-wrap:wrap;gap:6px}
+.stack-chip{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--muted-strong);background:var(--surface-2);border:1px solid var(--border);
+  padding:4px 10px;border-radius:4px;
+}
+.stack-chip.key{background:var(--accent-soft);border-color:var(--accent-border);color:var(--accent);font-weight:500}
+
+@media(max-width:768px){.stack-grid{grid-template-columns:1fr}}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:40px}
+.timeline::before{
+  content:'';position:absolute;left:10px;top:0;bottom:0;width:1px;
+  background-image:linear-gradient(var(--border-strong) 50%,transparent 50%);
+  background-size:1px 8px;
+}
+.timeline-entry{position:relative;margin-bottom:56px}
+.timeline-entry:last-child{margin-bottom:0}
+.timeline-node{
+  position:absolute;left:-40px;top:4px;width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--accent);background:var(--bg);
+}
+.timeline-date{
+  font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:1px;color:var(--accent);margin-bottom:8px;
+}
+.timeline-title{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin-bottom:6px}
+.timeline-company{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:18px}
+.timeline-bullets li{
+  font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7;
+  color:var(--muted-strong);margin-bottom:10px;padding-left:20px;position:relative;
+}
+.timeline-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent)}
+.m{color:var(--accent);font-weight:600}
+
+/* ── RESEARCH ── */
+.patent-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  overflow:hidden;box-shadow:var(--shadow);margin-bottom:48px;position:relative;
+}
+.patent-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent 80%);
+}
+.patent-grid{display:grid;grid-template-columns:1fr 300px}
+.patent-left{padding:40px}
+.patent-right{padding:40px;border-left:1px solid var(--border)}
+.patent-seal{
+  width:64px;height:64px;border-radius:50%;border:2px dashed var(--accent);
+  display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:16px;
+}
+.patent-seal::after{
+  content:'';position:absolute;inset:5px;border-radius:50%;border:1px dashed var(--accent-border);
+}
+.patent-seal-text{font-family:'JetBrains Mono',monospace;font-size:5.5px;text-transform:uppercase;text-align:center;color:var(--accent);letter-spacing:0.5px;line-height:1.3;z-index:1}
+.patent-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:1.5px;color:var(--accent);margin-bottom:14px;
+}
+.patent-title{font-family:'Fraunces',serif;font-size:26px;font-weight:500;margin-bottom:14px;line-height:1.3}
+.patent-desc{font-family:'Instrument Sans',sans-serif;font-size:14px;line-height:1.65;color:var(--muted-strong)}
+.meta-row{
+  display:flex;justify-content:space-between;padding:12px 0;
+  border-bottom:1px dashed var(--border);
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+}
+.meta-row:last-child{border-bottom:none}
+.meta-key{color:var(--muted)}
+.meta-val{color:var(--text);text-align:right}
+
+.pubs-grid{display:grid;grid-template-columns:320px 1fr;gap:24px}
+.pubs-counter-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:32px;box-shadow:var(--shadow);
+}
+.pubs-number{font-family:'Fraunces',serif;font-size:72px;font-weight:700;line-height:1}
+.pubs-number sup{color:var(--accent);font-size:0.4em}
+.pubs-text{font-family:'Instrument Sans',sans-serif;font-size:14px;line-height:1.65;color:var(--muted-strong);margin:16px 0 20px}
+.pubs-links{border-top:1px solid var(--border);padding-top:16px}
+.pubs-links a{
+  display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);
+  margin-bottom:8px;transition:opacity 0.2s;
+}
+.pubs-links a:hover{opacity:0.7}
+.pubs-links .orcid-link{color:var(--muted);text-decoration:underline;text-decoration-style:dotted}
+.paper-list{display:flex;flex-direction:column;gap:0}
+.paper-row{
+  display:grid;grid-template-columns:60px 1fr 80px;gap:16px;align-items:center;
+  padding:14px 0;border-bottom:1px solid var(--border);
+}
+.paper-row:last-child{border-bottom:none}
+.paper-year{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.paper-title-text{font-family:'Instrument Sans',sans-serif;font-size:13px;line-height:1.5;color:var(--text)}
+.paper-venue{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px}
+.tier-badge{
+  font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;
+  letter-spacing:1px;padding:3px 10px;border-radius:4px;text-align:center;font-weight:500;
+}
+.tier-badge.ieee{background:var(--ieee-bg);color:var(--ieee-text)}
+.tier-badge.scie{background:var(--accent-soft);color:var(--accent)}
+.tier-badge.scopus{background:var(--surface-2);color:var(--muted-strong)}
+
+@media(max-width:768px){
+  .patent-grid{grid-template-columns:1fr}
+  .patent-right{border-left:none;border-top:1px solid var(--border)}
+  .pubs-grid{grid-template-columns:1fr}
+  .paper-row{grid-template-columns:50px 1fr 60px}
+}
+
+/* ── EDUCATION ── */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.edu-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:32px;box-shadow:var(--shadow);
+}
+.edu-card-header{
+  font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:2px;color:var(--muted);margin-bottom:20px;
+}
+.edu-item{padding:14px 0;border-top:1px solid var(--border)}
+.edu-item:first-of-type{border-top:none;padding-top:0}
+.edu-degree{font-family:'Fraunces',serif;font-size:17px;font-weight:500}
+.edu-meta{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.edu-inst{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.edu-year{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-align:right;flex-shrink:0}
+.cert-item{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--border)}
+.cert-item:first-of-type{border-top:none;padding-top:0}
+.cert-check{
+  width:20px;height:20px;border-radius:4px;flex-shrink:0;margin-top:2px;
+  background:var(--accent-soft);border:1px solid var(--accent-border);
+  display:flex;align-items:center;justify-content:center;
+}
+.cert-check svg{width:12px;height:12px;color:var(--accent)}
+.cert-check.in-progress{border-style:dashed;background:rgba(234,179,8,0.1);border-color:rgba(234,179,8,0.3)}
+.cert-check.in-progress svg{color:var(--warning)}
+.cert-text{font-family:'Instrument Sans',sans-serif;font-size:14px;line-height:1.6;color:var(--muted-strong)}
+.cert-text strong{color:var(--text);font-weight:600}
+
+@media(max-width:768px){.edu-grid{grid-template-columns:1fr}}
+
+/* ── CONTACT ── */
+.contact{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;padding:120px 32px}
+.contact-heading{font-family:'Fraunces',serif;font-size:clamp(56px,8vw,110px);font-weight:600;margin-bottom:20px}
+.contact-heading em{font-style:italic;color:var(--accent)}
+.contact-sub{
+  font-family:'Fraunces',serif;font-size:clamp(18px,1.8vw,22px);color:var(--muted-strong);
+  max-width:620px;margin:0 auto 40px;line-height:1.6;
+}
+.contact-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',monospace;font-size:14px;
+  border:1px solid var(--border);border-radius:6px;padding:16px 32px;
+  transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
+}
+.contact-btn:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px rgba(132,204,22,0.2)}
+.contact-btn svg{width:20px;height:20px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-index:1}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px}
+.footer-links{display:flex;gap:16px}
+.footer-links a{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+  transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--accent)}
+@media(max-width:480px){
+  section{padding:64px 0}
+  .container{padding:0 20px}
+  .contact{padding:80px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand"><span class="pulse-dot"></span> PRADEEPAN.P</a>
+    <div class="nav-links">
+      
+      <a href="#projects"><span class="n">01</span>projects</a>
+      <a href="#skills"><span class="n">02</span>skills</a>
+      <a href="#experience"><span class="n">03</span>experience</a>
+      <a href="#research"><span class="n">04</span>research</a>
+      <a href="#education"><span class="n">05</span>education</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">☾</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+      
+        <h1 class="hero-name fade-up">Pradeepan P </h1>
+        <p class="hero-role fade-up f-mono">
+          <strong>Applied Scientist</strong> <span>/ Deep Learning / Generative &amp; Agentic AI · Medical Imaging · Quantum ML</span>
+        </p>
+        <p class="hero-pitch fade-up f-serif">
+          PhD computer scientist bridging advanced research and production-ready AI building intelligent systems that are <em>secure</em>, <em>reliable</em>, and <em>optimized for deployment</em> in real-world settings.
+        </p>
+        <div class="stats-row fade-up">
+          <div class="stat"><div class="stat-num f-serif">10<sup>+</sup></div><div class="stat-label">Peer-Reviewed Papers</div></div>
+          <div class="stat"><div class="stat-num f-serif">1</div><div class="stat-label">Granted Indian Patent</div></div>
+          <div class="stat"><div class="stat-num f-serif">5<sup>+</sup></div><div class="stat-label">Years Research</div></div>
+          <div class="stat"><div class="stat-num f-serif">4<sup>×</sup></div><div class="stat-label">UGC-NET Qualified</div></div>
+        </div>
+        <div class="link-buttons fade-up">
+          <a href="mailto:pradeep0076@gmail.com" class="link-btn primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          </a>
+          <a href="https://linkedin.com/in/1pradeepanp" target="_blank" class="link-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/pradeepanpp" target="_blank" class="link-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </a>
+          <a href="https://scholar.google.com/citations?hl=en&user=DXKhlEcAAAAJ&scilu=&scisig=ADQXK0wAAAAAaeyGNY276dLrzHtMTNlKTUT_-d0&gmla=AEk_c1vhMQWLISzIX6FY2ob8ilCQtDW3Nu6HvDhhHwfoc-UySwSy5p8i7M1PVdk2MuVh0q0PWYQisnbCsqmtEqc597Q0tM1scUqdijs&sciund=8518816700504695583" target="_blank" class="link-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Scholar
+          </a>
+          <a href="https://orcid.org/0009-0006-3583-2108" target="_blank" class="link-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-weight="700">iD</text></svg>
+            ORCID
+          </a>
+        </div>
+      </div>
+      <div class="hero-portrait fade-up">
+        <div class="portrait-frame" id="portraitFrame">
+          <div class="portrait-placeholder" id="portraitPlaceholder">
+            <div class="glyph f-serif">P.</div>
+            <div class="hint">Drop photo at assets/pradeepan.jpg</div>
+          </div>
+        </div>
+        <div class="portrait-caption">
+          <span>Pradeepan P.</span>
+          <span>Kerala · IN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ SELECTED WORK ═══ -->
+<section id="projects">
+  <div class="container">
+    
+    <h2 class="section-title fade-up">Selected Projects . 01.</h2>
+
+    <div class="projects-grid">
+
+      <!-- 01 FEATURED -->
+      <article class="project-card featured fade-up">
+        <div class="project-index">01 / 08</div>
+        <div class="project-badge">Medical AI · Clinical Deployment</div>
+        <h3 class="project-title f-serif">MQCF-Net — Clinical Stroke Triage</h3>
+        <p class="project-desc">Quantum-inspired cross-modal fusion network integrating multi-sequence 3D MRI (DWI, ADC, FLAIR, T1/T2) for acute ischemic stroke vs. stroke-mimic differentiation. Deployed IRB-governed study with Jubilee Mission Medical College, kerala, india.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>3D</b> multi-modal</span>
+          <span class="project-metric"><b>Hospital</b>-partnered</span>
+          <span class="project-metric"><b>IRB</b>-approved</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">PyTorch</span><span class="tech-chip">3D ResNet</span><span class="tech-chip">Cross-Attention</span><span class="tech-chip">DICOM</span>
+        </div>
+        <div class="project-links">
+          <span class="project-link muted-link">⏳ work ongoing</span>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="project-card fade-up">
+        <div class="project-index">02 / 08</div>
+        <div class="project-badge">Aerial Detection · Real-Time · IEEE 2026</div>
+        <h3 class="project-title f-serif">R-MSCGR — Tiny-Object Detection in Aerial Imagery</h3>
+        <p class="project-desc">Recursive residual multi-scale context-gating network addressing feature vanishing in drone imagery. Outperforms YOLOv10 on VisDrone while maintaining real-time inference.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>37.8%</b> mAP@50</span>
+          <span class="project-metric"><b>+7.69%</b> over YOLOv10</span>
+          <span class="project-metric"><b>4.0 ms</b> latency</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">PyTorch</span><span class="tech-chip">YOLO</span><span class="tech-chip">TensorRT</span><span class="tech-chip">VisDrone</span>
+        </div>
+        
+      </article>
+
+      <!-- 03 -->
+      <article class="project-card fade-up">
+        <div class="project-index">03 / 08</div>
+        <div class="project-badge">Edge AI · Quantum ML · IEEE 2026</div>
+        <h3 class="project-title f-serif">MobileNetV3-Quantum — Leukemia Detection</h3>
+        <p class="project-desc">Sample-adaptive gating fusing classical CNN logits with variational quantum circuit outputs per sample. SOTA on ALL-IDB2 at a fraction of baseline parameter count.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>98.72%</b> acc</span>
+          <span class="project-metric">AUC <b>0.997</b></span>
+          <span class="project-metric"><b>0.975M</b> params</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">PyTorch</span><span class="tech-chip">PennyLane</span><span class="tech-chip">MobileNetV3</span><span class="tech-chip">VQC</span>
+        </div>
+
+      </article>
+
+      <!-- 04 -->
+      <article class="project-card fade-up">
+        <div class="project-index">04 / 08</div>
+        <div class="project-badge">Agentic AI · LLM Systems</div>
+        <h3 class="project-title f-serif">Stateful Agentic AI — LangGraph + GPT-4o-mini</h3>
+        <p class="project-desc">Stateful LLM reasoning over a temporal state log. Tiered architecture: sub-10ms rule-based detection + event-triggered LLM reasoning. Formalized behavioral-pattern taxonomy.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>5 ms</b> detection</span>
+          <span class="project-metric"><b>Tiered</b> reasoning</span>
+          <span class="project-metric"><b>RAGAS</b>-evaluated</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">LangGraph</span><span class="tech-chip">LangChain</span><span class="tech-chip">OpenAI</span><span class="tech-chip">FastAPI</span><span class="tech-chip">Docker</span>
+        </div>
+        <div class="project-links">
+          
+          <a href="https://github.com/pradeepanpp" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+        </div>
+      </article>
+
+      <!-- 05 -->
+      <article class="project-card fade-up">
+        <div class="project-index">05 / 08</div>
+        <div class="project-badge">Retrieval · Multilingual</div>
+        <h3 class="project-title f-serif">Bilingual Arabic–English RAG Pipeline</h3>
+        <p class="project-desc">RAG with intelligent OCR fallback for scanned docs and RAGAS evaluation. Mixed-script handling with contextual fidelity preservation.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>Bilingual</b> retrieval</span>
+          <span class="project-metric"><b>OCR</b> fallback</span>
+          <span class="project-metric"><b>RAGAS</b> evaluation</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">LangChain</span><span class="tech-chip">FAISS</span><span class="tech-chip">Tesseract</span><span class="tech-chip">RAGAS</span><span class="tech-chip">FastAPI</span>
+        </div>
+        <div class="project-links">
+          
+          <a href="https://github.com/pradeepanpp" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+        </div>
+      </article>
+
+      <!-- 06 -->
+      <article class="project-card fade-up">
+        <div class="project-index">06 / 08</div>
+        <div class="project-badge">AI Safety · Guardrails</div>
+        <h3 class="project-title f-serif">LLM Jailbreak &amp; Adversarial Prompt Detection</h3>
+        <p class="project-desc">Multi-strategy classifier combining pattern heuristics with transformer-based anomaly scoring.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>Multi-strategy</b></span>
+          <span class="project-metric"><b>Real-time</b> scoring</span>
+          <span class="project-metric"><b>Adversarial</b>-tested</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">HuggingFace</span><span class="tech-chip">Transformers</span><span class="tech-chip">Scikit-learn</span><span class="tech-chip">FastAPI</span>
+        </div>
+        <div class="project-links">
+          
+          <a href="https://github.com/pradeepanpp" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+        </div>
+      </article>
+
+      <!-- 07 -->
+      <article class="project-card fade-up">
+        <div class="project-index">07 / 08</div>
+        <div class="project-badge">Text-to-SQL · Multilingual</div>
+        <h3 class="project-title f-serif">Bilingual Arabic–English Text-to-SQL</h3>
+        <p class="project-desc">Multi-strategy SQL generation with schema-linking, few-shot prompting, and self-correction loops.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>Bilingual</b> NL→SQL</span>
+          <span class="project-metric"><b>Multi-strategy</b></span>
+          <span class="project-metric"><b>FastAPI</b>-served</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">LangChain</span><span class="tech-chip">OpenAI</span><span class="tech-chip">SQLAlchemy</span><span class="tech-chip">RAGAS</span><span class="tech-chip">FastAPI</span>
+        </div>
+        <div class="project-links">
+          
+          <a href="https://github.com/pradeepanpp" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+        </div>
+      </article>
+
+      <!-- 08 -->
+      <article class="project-card fade-up">
+        <div class="project-index">08 / 08</div>
+        <div class="project-badge"> Deepfake Detection · SCIE Published</div>
+        <h3 class="project-title f-serif">Deepfake Detection Pipeline</h3>
+        <p class="project-desc">Lightweight MobileNetV2 detector with self-supervised contrastive pre-training and Efficient Channel Attention. End-to-end MLOps: containerized inference, CI/CD packaging, production serving.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>99.87%</b> acc on medical CT</span>
+          <span class="project-metric"><b>2.2M</b> params</span>
+          <span class="project-metric"><b>SCIE</b>-published</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">PyTorch</span><span class="tech-chip">MobileNetV2</span><span class="tech-chip">ECA</span>
+        </div>
+
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STACK & CAPABILITIES ═══ -->
+<section id="skills">
+  <div class="container">
+   
+    <h2 class="section-title fade-up">Stack &amp; Domains · 02</em>.</h2>
+    <div class="stack-grid">
+      <div class="stack-card fade-up">
+        <div class="stack-card-header">
+          <h3 class="stack-card-title f-serif">Deep Learning &amp; CV</h3>
+          <span class="stack-card-num f-mono">01</span>
+        </div>
+        <div class="stack-chips">
+          <span class="stack-chip key">ViT</span>
+          <span class="stack-chip key">PyTorch</span>
+          <span class="stack-chip">Hybrid CNN-Transformers</span>
+          <span class="stack-chip">U-Net variants</span>
+          <span class="stack-chip">Object detection (YOLO)</span>
+          <span class="stack-chip">CBAM/ECA/cross-attention</span>
+          <span class="stack-chip">Self-supervised &amp; contrastive</span>
+        </div>
+      </div>
+      <div class="stack-card fade-up">
+        <div class="stack-card-header">
+          <h3 class="stack-card-title f-serif">Generative &amp; Agentic AI</h3>
+          <span class="stack-card-num f-mono">02</span>
+        </div>
+        <div class="stack-chips">
+          <span class="stack-chip key">LangGraph</span>
+          <span class="stack-chip key">RAG</span>
+          <span class="stack-chip">GANs</span>
+          <span class="stack-chip">Diffusion Models</span>
+          <span class="stack-chip">Vision-Language (ViT+BART)</span>
+          <span class="stack-chip">LLMs</span>
+          <span class="stack-chip">LangChain</span>
+          <span class="stack-chip">OpenAI API</span>
+          <span class="stack-chip">RAGAS</span>
+        </div>
+      </div>
+      <div class="stack-card fade-up">
+        <div class="stack-card-header">
+          <h3 class="stack-card-title f-serif">Specialized Domains</h3>
+          <span class="stack-card-num f-mono">03</span>
+        </div>
+        <div class="stack-chips">
+          <span class="stack-chip key">Medical imaging</span>
+          <span class="stack-chip key">Quantum ML</span>
+          <span class="stack-chip">Endoscopy &amp; microscopy AI</span>
+          <span class="stack-chip">Aerial/tiny-object detection</span>
+          <span class="stack-chip">Deepfake &amp; adversarial detection</span>
+          <span class="stack-chip">Edge/lightweight</span>
+        </div>
+      </div>
+      <div class="stack-card full-width fade-up">
+        <div class="stack-card-header">
+          <h3 class="stack-card-title f-serif">Engineering &amp; MLOps</h3>
+          <span class="stack-card-num f-mono">04</span>
+        </div>
+        <div class="stack-chips">
+          <span class="stack-chip key">Docker</span>
+          <span class="stack-chip key">FastAPI</span>
+          <span class="stack-chip">PyTorch/TensorFlow/Keras</span>
+          <span class="stack-chip">HuggingFace/MONAI/OpenCV</span>
+          <span class="stack-chip">Git</span>
+          <span class="stack-chip">Mixed-precision (AMP)</span>
+          <span class="stack-chip">Python/SQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROFESSIONAL JOURNEY ═══ -->
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title fade-up">Professional Journey · 03</em>.</h2>
+    <div class="timeline">
+      <div class="timeline-entry fade-up">
+        <div class="timeline-node"></div>
+        <div class="timeline-date">Mar 2021 – Apr 2026 · 5+ yrs </div>
+        <h3 class="timeline-title f-serif">Researcher — Deep Learning &amp; Medical Imaging</h3>
+        <div class="timeline-company">Centre for Development of Imaging Technology (C-DIT) · Govt. of Kerala</div>
+        <ul class="timeline-bullets">
+          <li>Engineered reproducible PyTorch pipelines with AMP mixed-precision, config-driven experiments and automated checkpointing — cut model iteration cycles by <span class="m">40%</span> across the group.</li>
+          <li>Led hospital-partnered clinical study (Jubilee Mission Medical College): IRB-governed, de-identified multi-sequence 3D MRI cohorts for acute ischemic stroke differentiation.</li>
+          <li>Principal inventor of a Hybrid CNN-Transformer + CBAM architecture for GI endoscopic classification — granted Indian Design Patent <span class="m">№465548-001</span>.</li>
+          <li>Published across IEEE, SCIE, and Scopus venues on deepfakes, leukemia, aerial detection, and vision-language clinical reporting.</li>
+        </ul>
+      </div>
+      <div class="timeline-entry fade-up">
+        <div class="timeline-node"></div>
+        <div class="timeline-date">Jul 2018 – Dec 2020 · 2+ yrs</div>
+        <h3 class="timeline-title f-serif">Data Analyst</h3>
+        <div class="timeline-company">Chestnut Technologies Pvt Ltd · India</div>
+        <ul class="timeline-bullets">
+          <li>Built Python / Pandas analytics and A/B testing pipelines processing <span class="m">200M+</span> enterprise records.</li>
+          <li>Optimized ETL workflows, reducing nightly runtime by <span class="m">30%</span>.</li>
+          <li>Drove a <span class="m">9%</span> lift in user retention via churn analysis translated into actionable stakeholder insights.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESEARCH & IP ═══ -->
+<section id="research">
+  <div class="container">
+    
+    <h2 class="section-title fade-up">Research &amp; Intellectual Property · 04</em>.</h2>
+
+    <!-- Patent card -->
+    <div class="patent-card fade-up">
+      <div class="patent-grid">
+        <div class="patent-left">
+          <div class="patent-seal">
+            <span class="patent-seal-text">GRANTED<br>GOVT OF<br>INDIA</span>
+          </div>
+          <div class="patent-label">🇮🇳 Indian Design Patent · №465548-001</div>
+          <h3 class="patent-title f-serif">Hybrid CNN-Transformer with Convolutional Block Attention for GI Endoscopic Classification</h3>
+          <p class="patent-desc">A novel deep learning architecture combining the spatial hierarchy of convolutional neural networks with transformer-based global attention and a Convolutional Block Attention Module for automated gastrointestinal endoscopic image classification. Granted by the Government of India as a design patent protecting the system's unique architectural topology.</p>
+        </div>
+        <div class="patent-right">
+          <div class="meta-row"><span class="meta-key">Registration №</span><span class="meta-val">465548-001</span></div>
+          <div class="meta-row"><span class="meta-key">Jurisdiction</span><span class="meta-val">Govt. of India</span></div>
+          <div class="meta-row"><span class="meta-key">Grant Date</span><span class="meta-val">13 Oct 2025</span></div>
+          <div class="meta-row"><span class="meta-key">Role</span><span class="meta-val">Principal Inventor</span></div>
+          <div class="meta-row"><span class="meta-key">Companion Paper</span><span class="meta-val">IRJMS 2025 · Scopus</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publications -->
+    <div class="pubs-grid fade-up">
+      <div class="pubs-counter-card">
+        <div class="pubs-number f-serif">10<sup>+</sup></div>
+        <p class="pubs-text">Publications across IEEE conferences, SCIE, and Scopus-indexed journals spanning medical imaging, aerial detection, quantum ML, and multimodal AI.</p>
+        <div class="pubs-links">
+          <a href="https://scholar.google.com/citations?hl=en&user=DXKhlEcAAAAJ&scilu=&scisig=ADQXK0wAAAAAaeyGNY276dLrzHtMTNlKTUT_-d0&gmla=AEk_c1vhMQWLISzIX6FY2ob8ilCQtDW3Nu6HvDhhHwfoc-UySwSy5p8i7M1PVdk2MuVh0q0PWYQisnbCsqmtEqc597Q0tM1scUqdijs&sciund=8518816700504695583" target="_blank">View on Google Scholar →</a>
+          <a href="https://orcid.org/0009-0006-3583-2108" target="_blank" class="orcid-link">ORCID: 0009-0006-3583-2108</a>
+        </div>
+      </div>
+      <div class="paper-list">
+        <div class="paper-row">
+          <span class="paper-year">2026</span>
+          <div>
+            <div class="paper-title-text">A Recursive Residual Multi-Scale Context Gating Network for Tiny Object Detection in Aerial Imagery.</div>
+            <div class="paper-venue">IEEE ICISS</div>
+          </div>
+          <span class="tier-badge ieee">IEEE</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2026</span>
+          <div>
+            <div class="paper-title-text">A Lightweight Adaptive Gated MobileNet–Quantum Framework for Robust Acute Lymphoblastic Leukemia Detection.</div>
+            <div class="paper-venue">IEEE ICMSCI</div>
+          </div>
+          <span class="tier-badge ieee">IEEE</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2025</span>
+          <div>
+            <div class="paper-title-text">A Self-Supervised Contrastive Learning Approach for Detecting Deepfakes in Medical CT Scans.</div>
+            <div class="paper-venue">Journal of Intelligent &amp; Fuzzy Systems : Applications in Engineering and Technology</div>
+          </div>
+          <span class="tier-badge scie">SCIE</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2025</span>
+          <div>
+            <div class="paper-title-text">A Hybrid CNN-Transformer Deep Learning Framework with Convolutional Block Attention Module.</div>
+            <div class="paper-venue">IRJMS 6(1):238–249</div>
+          </div>
+          <span class="tier-badge scopus">Scopus</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EDUCATION ═══ -->
+<section id="education">
+  <div class="container">
+   
+    <h2 class="section-title fade-up">Education &amp; Credentials · 05</h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-up">
+        <div class="edu-card-header">Education</div>
+        <div class="edu-item">
+          <div class="edu-degree f-serif">Ph.D. Computer Science</div>
+          <div class="edu-meta"><span class="edu-inst">C-DIT, University of Kerala</span><span class="edu-year">2021 — 2026</span></div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree f-serif">M.Phil. Computer Science</div>
+          <div class="edu-meta"><span class="edu-inst">IIITM-K (CUSAT)</span><span class="edu-year">2017 — 2018</span></div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree f-serif">M.C.A.</div>
+          <div class="edu-meta"><span class="edu-inst">Mohandas College, University of Kerala</span><span class="edu-year">2012 — 2015</span></div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree f-serif">B.Sc. Mathematics</div>
+          <div class="edu-meta"><span class="edu-inst">University College Trivandrum</span><span class="edu-year">2009 — 2012</span></div>
+        </div>
+      </div>
+      <div class="edu-card fade-up">
+        <div class="edu-card-header">Honors &amp; Certifications</div>
+        <div class="cert-item">
+          <div class="cert-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="cert-text"><strong>UGC-NET</strong> (Computer Science &amp; Applications) — Qualified on all <strong>4 attempts</strong> (2018–2020).</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="cert-text"><strong>Microsoft Certified</strong> — Azure Data Scientist Associate &amp; Azure AI Engineer Associate.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="cert-text"><strong>Generative AI with LLMs</strong> — DeepLearning.AI.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="cert-text"><strong>Google data analytics professional </strong>Certifications</div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact" id="contact">
+  <h2 class="contact-heading fade-up f-serif">Let's <em>build</em>.</h2>
+  <p class="contact-sub fade-up f-serif">Currently exploring Applied Scientist and Research Engineer roles. Open to collaborations on medical AI, computer vision, and agentic systems.</p>
+  <a href="mailto:pradeep0076@gmail.com" class="contact-btn fade-up">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    pradeep0076@gmail.com
+  </a>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 PRADEEPAN P · ORCID 0009-0006-3583-2108</div>
+      <div class="footer-links">
+        <a href="https://github.com/pradeepanpp" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/1pradeepanp" target="_blank">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?hl=en&user=DXKhlEcAAAAJ&scilu=&scisig=ADQXK0wAAAAAaeyGNY276dLrzHtMTNlKTUT_-d0&gmla=AEk_c1vhMQWLISzIX6FY2ob8ilCQtDW3Nu6HvDhhHwfoc-UySwSy5p8i7M1PVdk2MuVh0q0PWYQisnbCsqmtEqc597Q0tM1scUqdijs&sciund=8518816700504695583" target="_blank">Scholar</a>
+        <a href="https://orcid.org/0009-0006-3583-2108" target="_blank">ORCID</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Theme toggle
+let currentTheme = 'dark';
+function toggleTheme() {
+  currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  document.querySelector('.theme-toggle').textContent = currentTheme === 'dark' ? '☾' : '☀';
+}
+
+// Fade-up on scroll
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+} else {
+  document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+}
+
+// Portrait image probe
+const img = new Image();
+img.onload = function() {
+  const frame = document.getElementById('portraitFrame');
+  const placeholder = document.getElementById('portraitPlaceholder');
+  if (placeholder) placeholder.remove();
+  const imgEl = document.createElement('img');
+  imgEl.src = 'assets/pradeepan.jpg';
+  imgEl.alt = 'Pradeepan P.';
+  imgEl.loading = 'lazy';
+  frame.appendChild(imgEl);
+};
+img.src = 'assets/pradeepan.jpg';
+</script>
+</body>
+</html>

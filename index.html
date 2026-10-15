@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pradeepan P. — Applied Scientist · Deep Learning · Medical AI</title>
-<meta name="description" content="PhD Computer Scientist building production-ready AI systems. Deep learning, medical imaging, quantum ML, and agentic AI.">
+<meta name="description" content="PhD computer scientist and Applied Scientist. Published work in medical imaging and computer vision; now building safe, governed LLM and agentic systems.">
+<link rel="canonical" href="https://pradeepanpp.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pradeepanpp.github.io/">
+<meta property="og:title" content="Pradeepan P. — Applied Scientist · Medical AI · Agentic AI">
+<meta property="og:description" content="PhD computer scientist. Published work in medical imaging and computer vision; now building safe, governed LLM and agentic systems.">
+<meta property="og:image" content="https://pradeepanpp.github.io/assets/pradeepan.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -253,7 +260,14 @@ nav{
 .project-link:hover{opacity:0.7}
 .project-link svg{width:14px;height:14px}
 .project-link.muted-link{color:var(--muted);font-style:italic}
+.project-group + .project-group{margin-top:80px}
+.group-head{margin-bottom:28px;max-width:760px}
+.group-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:10px}
+.group-title{font-family:'Fraunces',serif;font-size:clamp(22px,2.6vw,30px);font-weight:500;margin-bottom:8px}
+.group-intro{font-family:'Instrument Sans',sans-serif;font-size:15px;line-height:1.6;color:var(--muted-strong)}
+.project-badge.wip{color:var(--warning);background:rgba(234,179,8,0.1);border-color:rgba(234,179,8,0.3);margin-left:6px}
 
+.projects-grid > .project-card:not(.featured):last-child:nth-child(even){grid-column:1/-1}
 @media(max-width:1024px){.projects-grid{grid-template-columns:1fr}}
 @media(max-width:768px){.project-card.featured::before{display:none}}
 
@@ -360,6 +374,7 @@ nav{
 }
 .paper-row:last-child{border-bottom:none}
 .paper-year{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.paper-title-text a:hover{color:var(--accent)}
 .paper-title-text{font-family:'Instrument Sans',sans-serif;font-size:13px;line-height:1.5;color:var(--text)}
 .paper-venue{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px}
 .tier-badge{
@@ -369,6 +384,11 @@ nav{
 .tier-badge.ieee{background:var(--ieee-bg);color:var(--ieee-text)}
 .tier-badge.scie{background:var(--accent-soft);color:var(--accent)}
 .tier-badge.scopus{background:var(--surface-2);color:var(--muted-strong)}
+.tier-badge.journal,.tier-badge.conf{background:var(--surface-2);color:var(--muted)}
+.tier-badge.review{background:rgba(234,179,8,0.1);color:var(--warning)}
+.paper-authors{font-family:'Instrument Sans',sans-serif;font-size:12px;color:var(--muted);margin-top:3px}
+.paper-authors .me{color:var(--text);font-weight:600}
+.pubs-counter-card{position:sticky;top:80px;align-self:start}
 
 @media(max-width:768px){
   .patent-grid{grid-template-columns:1fr}
@@ -474,7 +494,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
           PhD computer scientist bridging advanced research and production-ready AI. I build intelligent systems that are <em>secure</em>, <em>reliable</em>, and <em>optimized for deployment</em> in real-world environments.
         </p>
         <div class="stats-row fade-up">
-          <div class="stat"><div class="stat-num f-serif">10<sup>+</sup></div><div class="stat-label">Peer-Reviewed Papers</div></div>
+          <div class="stat"><div class="stat-num f-serif">12</div><div class="stat-label">Peer-Reviewed Papers</div></div>
           <div class="stat"><div class="stat-num f-serif">1</div><div class="stat-label">Granted Indian Patent</div></div>
           <div class="stat"><div class="stat-num f-serif">5<sup>+</sup></div><div class="stat-label">Years Research</div></div>
           <div class="stat"><div class="stat-num f-serif">4<sup>×</sup></div><div class="stat-label">UGC-NET Qualified</div></div>
@@ -492,7 +512,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
             GitHub
           </a>
-          <a href="https://scholar.google.com/citations?hl=en&user=DXKhlEcAAAAJ&scilu=&scisig=ADQXK0wAAAAAaeyGNY276dLrzHtMTNlKTUT_-d0&gmla=AEk_c1vhMQWLISzIX6FY2ob8ilCQtDW3Nu6HvDhhHwfoc-UySwSy5p8i7M1PVdk2MuVh0q0PWYQisnbCsqmtEqc597Q0tM1scUqdijs&sciund=8518816700504695583" target="_blank" class="link-btn">
+          <a href="https://scholar.google.com/citations?user=DXKhlEcAAAAJ&amp;hl=en" target="_blank" class="link-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             Scholar
           </a>
@@ -504,10 +524,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
       </div>
       <div class="hero-portrait fade-up">
         <div class="portrait-frame" id="portraitFrame">
-          <div class="portrait-placeholder" id="portraitPlaceholder">
-            <div class="glyph f-serif">P.</div>
-            <div class="hint">Drop photo at assets/pradeepan.jpg</div>
-          </div>
+          <img src="assets/pradeepan.jpg" alt="Portrait of Pradeepan P." width="380" height="475">
         </div>
 
       </div>
@@ -519,14 +536,20 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
 <section id="projects">
   <div class="container">
     
-    <h2 class="section-title fade-up">Selected Projects . 01.</h2>
+    <h2 class="section-title fade-up">Selected Projects · 01</h2>
 
-    <div class="projects-grid">
+    <div class="project-group">
+      <div class="group-head fade-up">
+        <div class="group-label">A · Research</div>
+        <h3 class="group-title f-serif">Selected research</h3>
+        <p class="group-intro">Four highlights from 12 published papers (9 as first author) and 1 co-first-authored paper under review, in medical imaging and computer vision, from a hospital-partnered clinical study to IEEE- and SCIE-published models. <a href="#research" class="project-link" style="display:inline">Full publication list ↓</a></p>
+      </div>
+      <div class="projects-grid">
 
-      <!-- 01 FEATURED -->
+      <!-- R1 FEATURED -->
       <article class="project-card featured fade-up">
-        <div class="project-index">01 / 07</div>
-        <div class="project-badge">Medical AI · Trustworthy Clinical AI </div>
+        <div class="project-index">01 / 04</div>
+        <div class="project-badge">Medical AI · Trustworthy Clinical AI</div>
         <h3 class="project-title f-serif">Stroke vs. Stroke-Mimic Discrimination</h3>
         <p class="project-desc">A controlled evaluation of self-supervised features for acute ischemic stroke versus stroke-mimic discrimination on diffusion MRI (DWI/ADC). IRB-governed study with Jubilee Mission Medical College, Kerala, India.</p>
         <div class="project-metrics">
@@ -542,9 +565,9 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
         </div>
       </article>
 
-      <!-- 02 -->
+      <!-- R2 -->
       <article class="project-card fade-up">
-        <div class="project-index">02 / 07</div>
+        <div class="project-index">02 / 04</div>
         <div class="project-badge">Aerial Detection · Real-Time · IEEE 2026</div>
         <h3 class="project-title f-serif">R-MSCGR — Tiny-Object Detection in Aerial Imagery</h3>
         <p class="project-desc">Recursive residual multi-scale context-gating network addressing feature vanishing in drone imagery. Outperforms YOLOv10 on VisDrone while maintaining real-time inference.</p>
@@ -556,12 +579,14 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
         <div class="tech-chips">
           <span class="tech-chip">PyTorch</span><span class="tech-chip">YOLO</span><span class="tech-chip">TensorRT</span><span class="tech-chip">VisDrone</span>
         </div>
-        
+        <div class="project-links">
+          <a href="https://ieeexplore.ieee.org/abstract/document/11453773" target="_blank" rel="noopener" class="project-link">📄 IEEE ICISS 2026 · Paper</a>
+        </div>
       </article>
 
-      <!-- 03 -->
+      <!-- R3 -->
       <article class="project-card fade-up">
-        <div class="project-index">03 / 07</div>
+        <div class="project-index">03 / 04</div>
         <div class="project-badge">Edge AI · Quantum ML · IEEE 2026</div>
         <h3 class="project-title f-serif">MobileNetV3-Quantum — Leukemia Detection</h3>
         <p class="project-desc">Sample-adaptive gating fusing classical CNN logits with variational quantum circuit outputs per sample. SOTA on ALL-IDB2 at a fraction of baseline parameter count.</p>
@@ -573,76 +598,15 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
         <div class="tech-chips">
           <span class="tech-chip">PyTorch</span><span class="tech-chip">PennyLane</span><span class="tech-chip">MobileNetV3</span><span class="tech-chip">VQC</span>
         </div>
-
-      </article>
-
-      <!-- 04 -->
-
-
-      <!-- 05 -->
-      <article class="project-card fade-up">
-        <div class="project-index">04 / 07</div>
-        <div class="project-badge">Retrieval · Multilingual</div>
-        <h3 class="project-title f-serif">Bilingual Arabic–English RAG Pipeline</h3>
-        <p class="project-desc">RAG with intelligent OCR fallback for scanned docs and RAGAS evaluation. Mixed-script handling with contextual fidelity preservation.</p>
-        <div class="project-metrics">
-          <span class="project-metric"><b>Bilingual</b> retrieval</span>
-          <span class="project-metric"><b>OCR</b> fallback</span>
-          <span class="project-metric"><b>RAGAS</b> evaluation</span>
-        </div>
-        <div class="tech-chips">
-          <span class="tech-chip">LangChain</span><span class="tech-chip">FAISS</span><span class="tech-chip">Tesseract</span><span class="tech-chip">RAGAS</span><span class="tech-chip">FastAPI</span>
-        </div>
         <div class="project-links">
-          
-          <a href="https://github.com/pradeepanpp" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+          <a href="https://ieeexplore.ieee.org/abstract/document/11469295" target="_blank" rel="noopener" class="project-link">📄 IEEE ICMSCI 2026 · Paper</a>
         </div>
       </article>
 
-      <!-- 06 -->
+      <!-- R4 -->
       <article class="project-card fade-up">
-        <div class="project-index">05 / 07</div>
-        <div class="project-badge">AI Safety · Guardrails</div>
-        <h3 class="project-title f-serif">LLM Jailbreak &amp; Adversarial Prompt Detection</h3>
-        <p class="project-desc">Multi-strategy classifier combining pattern heuristics with transformer-based anomaly scoring.</p>
-        <div class="project-metrics">
-          <span class="project-metric"><b>Multi-strategy</b></span>
-          <span class="project-metric"><b>Real-time</b> scoring</span>
-          <span class="project-metric"><b>Adversarial</b>-tested</span>
-        </div>
-        <div class="tech-chips">
-          <span class="tech-chip">HuggingFace</span><span class="tech-chip">Transformers</span><span class="tech-chip">Scikit-learn</span><span class="tech-chip">FastAPI</span>
-        </div>
-        <div class="project-links">
-          
-          <a href="https://github.com/pradeepanpp" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
-        </div>
-      </article>
-
-      <!-- 07 -->
-      <article class="project-card fade-up">
-        <div class="project-index">06 / 07</div>
-        <div class="project-badge">Text-to-SQL · Multilingual</div>
-        <h3 class="project-title f-serif">Bilingual Arabic–English Text-to-SQL</h3>
-        <p class="project-desc">Multi-strategy SQL generation with schema-linking, few-shot prompting, and self-correction loops.</p>
-        <div class="project-metrics">
-          <span class="project-metric"><b>Bilingual</b> NL→SQL</span>
-          <span class="project-metric"><b>Multi-strategy</b></span>
-          <span class="project-metric"><b>FastAPI</b>-served</span>
-        </div>
-        <div class="tech-chips">
-          <span class="tech-chip">LangChain</span><span class="tech-chip">OpenAI</span><span class="tech-chip">SQLAlchemy</span><span class="tech-chip">RAGAS</span><span class="tech-chip">FastAPI</span>
-        </div>
-        <div class="project-links">
-          
-          <a href="https://github.com/pradeepanpp" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
-        </div>
-      </article>
-
-      <!-- 08 -->
-      <article class="project-card fade-up">
-        <div class="project-index">07 / 07</div>
-        <div class="project-badge"> Deepfake Detection · SCIE Published</div>
+        <div class="project-index">04 / 04</div>
+        <div class="project-badge">Medical AI Security · Deepfake Detection</div>
         <h3 class="project-title f-serif">Deepfake Detection Pipeline</h3>
         <p class="project-desc">Lightweight MobileNetV2 detector with self-supervised contrastive pre-training and Efficient Channel Attention. End-to-end MLOps: containerized inference, CI/CD packaging, production serving.</p>
         <div class="project-metrics">
@@ -653,9 +617,100 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
         <div class="tech-chips">
           <span class="tech-chip">PyTorch</span><span class="tech-chip">MobileNetV2</span><span class="tech-chip">ECA</span>
         </div>
-
+        <div class="project-links">
+          <a href="https://journals.sagepub.com/doi/abs/10.1177/18758967251398052" target="_blank" rel="noopener" class="project-link">📄 J. Intelligent &amp; Fuzzy Systems · Paper</a>
+        </div>
       </article>
 
+      </div>
+    </div>
+
+    <div class="project-group">
+      <div class="group-head fade-up">
+        <div class="group-label">B · Applied LLM Systems</div>
+        <h3 class="group-title f-serif">Safe, verifiable LLM and agentic systems</h3>
+        <p class="group-intro">Since 2026: LLM systems built around safety, governance and measured evaluation. Each repository includes its benchmark and tests.</p>
+      </div>
+      <div class="projects-grid">
+
+      <!-- A1 FEATURED -->
+      <article class="project-card featured fade-up">
+        <div class="project-index">01 / 04</div>
+        <div class="project-badge">Agentic AI · Governance</div><div class="project-badge wip">In progress</div>
+        <h3 class="project-title f-serif">Governed Accounts-Payable AI Agent</h3>
+        <p class="project-desc">A LangGraph invoice-approval agent in which the LLM only recommends and deterministic controls decide: three-way PO matching, tax and duplicate checks, a prompt-injection guardrail, vendor-risk scoring and a policy engine feed an enforcement gate that can only tighten the outcome. A threat-model-driven benchmark measures how much each layer prevents unsafe approvals and what it costs in automation and human review.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>22 / 26</b> unsafe invoices stopped, guardrail disabled</span>
+          <span class="project-metric"><b>100%</b> benign auto-approved</span>
+          <span class="project-metric"><b>60</b> scenarios · 84 invoices</span>
+          <span class="project-metric"><b>400+</b> tests · CI</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">LangGraph</span><span class="tech-chip">LiteLLM</span><span class="tech-chip">FastAPI</span><span class="tech-chip">Streamlit</span><span class="tech-chip">Tesseract OCR</span><span class="tech-chip">Docker</span><span class="tech-chip">GitHub Actions</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/pradeepanpp/governed-accounts-payable-agent" target="_blank" rel="noopener" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+        </div>
+      </article>
+
+      <!-- A2 -->
+      <article class="project-card fade-up">
+        <div class="project-index">02 / 04</div>
+        <div class="project-badge">Text-to-SQL · Bilingual</div>
+        <h3 class="project-title f-serif">Arabic–English Text-to-SQL Chatbot</h3>
+        <p class="project-desc">Routes each question by complexity to a single-call chain, a chain-of-thought chain, or a LangGraph ReAct agent with schema and query-checking tools, over a 6-table, 65K-row sales database. A SQL guard blocks injection and write operations and logs every query.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>97%</b> execution accuracy</span>
+          <span class="project-metric"><b>100</b>-question benchmark</span>
+          <span class="project-metric"><b>15 / 15</b> Arabic</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">LangGraph</span><span class="tech-chip">LangChain</span><span class="tech-chip">GPT-4o-mini</span><span class="tech-chip">SQLite</span><span class="tech-chip">FastAPI</span><span class="tech-chip">Docker</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/pradeepanpp/text-to-sql-chatbot" target="_blank" rel="noopener" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+        </div>
+      </article>
+
+      <!-- A3 -->
+      <article class="project-card fade-up">
+        <div class="project-index">03 / 04</div>
+        <div class="project-badge">AI Safety · Guardrails</div>
+        <h3 class="project-title f-serif">LLM Jailbreak &amp; Prompt-Injection Detector</h3>
+        <p class="project-desc">Three-layer detector (33 regex rules, a fine-tuned 7-class DistilBERT classifier, and MPNet + FAISS similarity matching) fused by a risk engine into BLOCK / MONITOR / ALLOW decisions behind a FastAPI service.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>3</b>-layer cascade</span>
+          <span class="project-metric">Recall <b>30% → 100%</b> in ablation</span>
+          <span class="project-metric"><b>116 ms</b> p50 on CPU</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">PyTorch</span><span class="tech-chip">DistilBERT</span><span class="tech-chip">FAISS</span><span class="tech-chip">FastAPI</span><span class="tech-chip">Docker</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/pradeepanpp/jailbreak-detection-system" target="_blank" rel="noopener" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+        </div>
+      </article>
+
+      <!-- A4 -->
+      <article class="project-card fade-up">
+        <div class="project-index">04 / 04</div>
+        <div class="project-badge">Retrieval · Bilingual</div>
+        <h3 class="project-title f-serif">Arabic–English RAG with OCR Fallback</h3>
+        <p class="project-desc">Document Q&amp;A over Arabic and English PDFs using multilingual-E5 embeddings and FAISS, with page-level citations, a per-page EasyOCR fallback for scanned documents, and a right-to-left Streamlit interface.</p>
+        <div class="project-metrics">
+          <span class="project-metric"><b>Cross-lingual</b> retrieval</span>
+          <span class="project-metric"><b>Per-page</b> OCR fallback</span>
+          <span class="project-metric"><b>Page-level</b> citations</span>
+        </div>
+        <div class="tech-chips">
+          <span class="tech-chip">LangGraph</span><span class="tech-chip">Multilingual-E5</span><span class="tech-chip">FAISS</span><span class="tech-chip">EasyOCR</span><span class="tech-chip">RAGAS</span><span class="tech-chip">Streamlit</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/pradeepanpp/Bilingual-Arabic-English-RAG" target="_blank" rel="noopener" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub</a>
+        </div>
+      </article>
+
+      </div>
     </div>
   </div>
 </section>
@@ -664,7 +719,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
 <section id="skills">
   <div class="container">
    
-    <h2 class="section-title fade-up">Stack &amp; Domains · 02</em>.</h2>
+    <h2 class="section-title fade-up">Stack &amp; Domains · 02</h2>
     <div class="stack-grid">
       <div class="stack-card fade-up">
         <div class="stack-card-header">
@@ -696,6 +751,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
           <span class="stack-chip">LangChain</span>
           <span class="stack-chip">OpenAI API</span>
           <span class="stack-chip">RAGAS</span>
+          <span class="stack-chip">LLM guardrails &amp; evaluation</span>
         </div>
       </div>
       <div class="stack-card fade-up">
@@ -722,7 +778,9 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
           <span class="stack-chip key">FastAPI</span>
           <span class="stack-chip">PyTorch/TensorFlow/Keras</span>
           <span class="stack-chip">HuggingFace/MONAI/OpenCV</span>
-          <span class="stack-chip">Git</span>
+          <span class="stack-chip">Git · GitHub Actions CI</span>
+          <span class="stack-chip">pytest</span>
+          <span class="stack-chip">Streamlit</span>
           <span class="stack-chip">Mixed-precision (AMP)</span>
           <span class="stack-chip">Python/SQL</span>
         </div>
@@ -734,7 +792,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
 <!-- ═══ PROFESSIONAL JOURNEY ═══ -->
 <section id="experience">
   <div class="container">
-    <h2 class="section-title fade-up">Professional Journey · 03</em>.</h2>
+    <h2 class="section-title fade-up">Professional Journey · 03</h2>
     <div class="timeline">
       <div class="timeline-entry fade-up">
         <div class="timeline-node"></div>
@@ -745,7 +803,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
           <li>Engineered reproducible PyTorch pipelines with AMP mixed-precision, config-driven experiments and automated checkpointing — cut model iteration cycles by <span class="m">40%</span> across the group.</li>
           <li>Led hospital-partnered clinical study (Jubilee Mission Medical College): IRB-governed, de-identified multi-sequence 3D MRI cohorts for acute ischemic stroke differentiation.</li>
           <li>Principal inventor of a Hybrid CNN-Transformer + CBAM architecture for GI endoscopic classification — granted Indian Design Patent <span class="m">№465548-001</span>.</li>
-          <li>Published across IEEE, SCIE, and Scopus venues on deepfakes, leukemia, aerial detection, and vision-language clinical reporting.</li>
+          <li>Published across IEEE, SCIE, and Scopus venues on medical deepfakes, adversarial robustness, leukemia, and aerial detection; presented a ViT + BART vision-language model for automatic chest X-ray report generation.</li>
         </ul>
       </div>
       <div class="timeline-entry fade-up">
@@ -767,7 +825,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
 <section id="research">
   <div class="container">
     
-    <h2 class="section-title fade-up">Research &amp; Intellectual Property · 04</em>.</h2>
+    <h2 class="section-title fade-up">Research &amp; Intellectual Property · 04</h2>
 
     <!-- Patent card -->
     <div class="patent-card fade-up">
@@ -793,45 +851,139 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
     <!-- Publications -->
     <div class="pubs-grid fade-up">
       <div class="pubs-counter-card">
-        <div class="pubs-number f-serif">10<sup>+</sup></div>
-        <p class="pubs-text">Publications across IEEE conferences, SCIE, and Scopus-indexed journals spanning medical imaging, aerial detection, quantum ML, and multimodal AI.</p>
+        <div class="pubs-number f-serif">12</div>
+        <p class="pubs-text">Peer-reviewed papers across IEEE conferences and SCIE- and Scopus-indexed journals, spanning medical imaging, aerial detection, quantum ML and adversarial robustness, plus 1 under review at IEEE Access and a conference presentation on vision-language report generation. <strong>First author on 9 of 12 published</strong>, and co-first author on the paper under review.</p>
         <div class="pubs-links">
-          <a href="https://scholar.google.com/citations?hl=en&user=DXKhlEcAAAAJ&scilu=&scisig=ADQXK0wAAAAAaeyGNY276dLrzHtMTNlKTUT_-d0&gmla=AEk_c1vhMQWLISzIX6FY2ob8ilCQtDW3Nu6HvDhhHwfoc-UySwSy5p8i7M1PVdk2MuVh0q0PWYQisnbCsqmtEqc597Q0tM1scUqdijs&sciund=8518816700504695583" target="_blank">View on Google Scholar →</a>
+          <a href="https://scholar.google.com/citations?user=DXKhlEcAAAAJ&amp;hl=en" target="_blank">View on Google Scholar →</a>
           <a href="https://orcid.org/0009-0006-3583-2108" target="_blank" class="orcid-link">ORCID: 0009-0006-3583-2108</a>
         </div>
       </div>
       <div class="paper-list">
         <div class="paper-row">
+          <span class="paper-year">Review</span>
+          <div>
+            <div class="paper-title-text">Stroke vs. stroke-mimic discrimination with self-supervised features on diffusion MRI</div>
+            <div class="paper-authors"><b class="me">Co-first author</b> (equal contribution) · under review</div>
+            <div class="paper-venue">IEEE Access</div>
+          </div>
+          <span class="tier-badge review">Review</span>
+        </div>
+        <div class="paper-row">
           <span class="paper-year">2026</span>
           <div>
-            <div class="paper-title-text">A Recursive Residual Multi-Scale Context Gating Network for Tiny Object Detection in Aerial Imagery.</div>
-            <div class="paper-venue">IEEE ICISS</div>
+            <div class="paper-title-text"><a href="https://ieeexplore.ieee.org/abstract/document/11453773" target="_blank" rel="noopener">A Recursive Residual Multi-Scale Context Gating Network for Tiny Object Detection in Aerial Imagery ↗</a></div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, J George</div>
+            <div class="paper-venue">IEEE ICISS 2026</div>
           </div>
           <span class="tier-badge ieee">IEEE</span>
         </div>
         <div class="paper-row">
           <span class="paper-year">2026</span>
           <div>
-            <div class="paper-title-text">A Lightweight Adaptive Gated MobileNet–Quantum Framework for Robust Acute Lymphoblastic Leukemia Detection.</div>
-            <div class="paper-venue">IEEE ICMSCI</div>
+            <div class="paper-title-text"><a href="https://ieeexplore.ieee.org/abstract/document/11469295" target="_blank" rel="noopener">A Lightweight Adaptive Gated MobileNet–Quantum Framework for Robust Acute Lymphoblastic Leukemia Detection ↗</a></div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, J George, MR Neethunath</div>
+            <div class="paper-venue">IEEE ICMSCI 2026</div>
+          </div>
+          <span class="tier-badge ieee">IEEE</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2026</span>
+          <div>
+            <div class="paper-title-text">A Lightweight Superpixel-Based CNN–GNN Hybrid Approach for Acute Stroke Subtype Detection on Non-Contrast Head CT</div>
+            <div class="paper-authors">MR Neethunath, <b class="me">Pradeepan P</b>, KU Sheba</div>
+            <div class="paper-venue">IEEE ICISS 2026</div>
           </div>
           <span class="tier-badge ieee">IEEE</span>
         </div>
         <div class="paper-row">
           <span class="paper-year">2025</span>
           <div>
-            <div class="paper-title-text">A Self-Supervised Contrastive Learning Approach for Detecting Deepfakes in Medical CT Scans.</div>
-            <div class="paper-venue">Journal of Intelligent &amp; Fuzzy Systems : Applications in Engineering and Technology</div>
+            <div class="paper-title-text"><a href="https://journals.sagepub.com/doi/abs/10.1177/18758967251398052" target="_blank" rel="noopener">A Self-Supervised Contrastive Learning Approach for Detecting Deepfakes in Medical CT Scans ↗</a></div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, S Gladston Raj, J George, MR Neethunath</div>
+            <div class="paper-venue">Journal of Intelligent &amp; Fuzzy Systems</div>
           </div>
           <span class="tier-badge scie">SCIE</span>
         </div>
         <div class="paper-row">
           <span class="paper-year">2025</span>
           <div>
-            <div class="paper-title-text">A Hybrid CNN-Transformer Deep Learning Framework with Convolutional Block Attention Module.</div>
-            <div class="paper-venue">IRJMS 6(1):238–249</div>
+            <div class="paper-title-text">A Comprehensive Review of Deepfakes in Medical Imaging: Ethical Concerns, Detection Techniques and Future Directions</div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, S Gladston Raj, J George</div>
+            <div class="paper-venue">Applied Computer Science 21(2):139–153</div>
           </div>
           <span class="tier-badge scopus">Scopus</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2025</span>
+          <div>
+            <div class="paper-title-text">A Hybrid CNN-Transformer Deep Learning Framework with Convolutional Block Attention Module for Enhanced Gastrointestinal Endoscopy Analysis</div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, S Gladston Raj, J George</div>
+            <div class="paper-venue">IRJMS 6(1):238–249 · patent companion paper</div>
+          </div>
+          <span class="tier-badge scopus">Scopus</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2025</span>
+          <div>
+            <div class="paper-title-text">A Lightweight Deep Learning Framework for Real-Time Detection of Deepfake Medical Images</div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, S Gladston Raj, J George</div>
+            <div class="paper-venue">IEEE AMATHE 2025</div>
+          </div>
+          <span class="tier-badge ieee">IEEE</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2025</span>
+          <div>
+            <div class="paper-title-text">An Attention-Enhanced Lightweight Deep Learning Approach for Automated Detection of Leukemic Blasts</div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, S Gladston Raj, J George, MR Neethunath</div>
+            <div class="paper-venue">IEEE ICUIS 2025</div>
+          </div>
+          <span class="tier-badge ieee">IEEE</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2025</span>
+          <div>
+            <div class="paper-title-text">A Hierarchical Multiscale Attention Framework for Robust Chest X-Ray Abnormality Detection</div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, S Gladston Raj, J George, MR Neethunath</div>
+            <div class="paper-venue">IC2NC 2025</div>
+          </div>
+          <span class="tier-badge conf">Conf.</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2025</span>
+          <div>
+            <div class="paper-title-text">Adversarial Robustness of Deep Learning in Medical Imaging: A Comprehensive Survey and Benchmark of State-of-the-Art Architectures</div>
+            <div class="paper-authors">MR Neethunath, S Gladston Raj, <b class="me">Pradeepan P</b></div>
+            <div class="paper-venue">IJACSA 16(12)</div>
+          </div>
+          <span class="tier-badge scopus">Scopus</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2025</span>
+          <div>
+            <div class="paper-title-text">Curriculum-Based TRADES for Robust Skin Lesion Classification under Adversarial Attacks</div>
+            <div class="paper-authors">MR Neethunath, <b class="me">Pradeepan P</b></div>
+            <div class="paper-venue">IEEE ICoICI 2025</div>
+          </div>
+          <span class="tier-badge ieee">IEEE</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2024</span>
+          <div>
+            <div class="paper-title-text">A Transformer-Based Vision and Language Encoder-Decoder Approach for Automatic X-Ray Report Generation</div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, S Gladston Raj</div>
+            <div class="paper-venue">Engineering Advances 2024 · 1st Int. Conf., Pravara Rural Engineering College, India · ViT + BART on IU Chest X-ray</div>
+          </div>
+          <span class="tier-badge conf">Presented</span>
+        </div>
+        <div class="paper-row">
+          <span class="paper-year">2024</span>
+          <div>
+            <div class="paper-title-text">Detection of Deepfake Medical Images Based on Spatial and Frequency Domain Analysis</div>
+            <div class="paper-authors"><b class="me">Pradeepan P</b>, S Gladston Raj</div>
+            <div class="paper-venue">IEEE CICN 2024</div>
+          </div>
+          <span class="tier-badge ieee">IEEE</span>
         </div>
       </div>
     </div>
@@ -871,7 +1023,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
         </div>
         <div class="cert-item">
           <div class="cert-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-          <div class="cert-text"><strong>Microsoft Certified</strong> — Azure Data Scientist Associate &amp; Azure AI Engineer Associate.</div>
+          <div class="cert-text"><strong>Microsoft Certified: Azure AI Apps and Agents Developer Associate</strong> (AI-103) — Sep 2026. Credential ID 357477BA2F185AAB · <a href="https://learn.microsoft.com/en-gb/users/pradeepan-7198/credentials/certification/azure-ai-apps-and-agents-developer-associate?tab=credentials-tab" target="_blank" rel="noopener" style="color:var(--accent)">Verify ↗</a></div>
         </div>
         <div class="cert-item">
           <div class="cert-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -879,9 +1031,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
         </div>
         <div class="cert-item">
           <div class="cert-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-          <div class="cert-text"><strong>Google Data Analytics Professional </strong> Certifications</div>
-        </div>
-
+          <div class="cert-text"><strong>Google Data Analytics</strong> Professional Certificate.</div>
         </div>
       </div>
     </div>
@@ -906,7 +1056,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-ind
       <div class="footer-links">
         <a href="https://github.com/pradeepanpp" target="_blank">GitHub</a>
         <a href="https://linkedin.com/in/1pradeepanp" target="_blank">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?hl=en&user=DXKhlEcAAAAJ&scilu=&scisig=ADQXK0wAAAAAaeyGNY276dLrzHtMTNlKTUT_-d0&gmla=AEk_c1vhMQWLISzIX6FY2ob8ilCQtDW3Nu6HvDhhHwfoc-UySwSy5p8i7M1PVdk2MuVh0q0PWYQisnbCsqmtEqc597Q0tM1scUqdijs&sciund=8518816700504695583" target="_blank">Scholar</a>
+        <a href="https://scholar.google.com/citations?user=DXKhlEcAAAAJ&amp;hl=en" target="_blank">Scholar</a>
         <a href="https://orcid.org/0009-0006-3583-2108" target="_blank">ORCID</a>
       </div>
     </div>
@@ -937,19 +1087,6 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
 }
 
-// Portrait image probe
-const img = new Image();
-img.onload = function() {
-  const frame = document.getElementById('portraitFrame');
-  const placeholder = document.getElementById('portraitPlaceholder');
-  if (placeholder) placeholder.remove();
-  const imgEl = document.createElement('img');
-  imgEl.src = 'assets/pradeepan.jpg';
-  imgEl.alt = 'Pradeepan P.';
-  imgEl.loading = 'lazy';
-  frame.appendChild(imgEl);
-};
-img.src = 'assets/pradeepan.jpg';
 </script>
 </body>
 </html>
